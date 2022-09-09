@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Gastos;
+use App\Anio;
+use App\Mes;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
