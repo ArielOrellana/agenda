@@ -14,6 +14,7 @@
     
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/modalbox.css' )}}" type="text/css" media="screen" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
@@ -79,6 +80,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script> 
+    <script src="{{ asset('js/modalbox.js') }}"></script> 
 
 </body>
 </html>

@@ -18,3 +18,5 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/{idmes?}/{ani?}', 'HomeController@index')->name('home');
+Route::resource('gastos','GastosController');

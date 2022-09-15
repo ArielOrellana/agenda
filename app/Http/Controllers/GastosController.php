@@ -6,6 +6,7 @@ use App\Gastos;
 use App\Anio;
 use App\Mes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GastosController extends Controller
 {
@@ -37,7 +38,19 @@ class GastosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $id = Auth::id();
+        $gastos = new Gastos();
+        $gastos->precio = $request->precio;
+        $gastos->id_mes = $request->id_mes;
+        $gastos->descripcion = $request->descripcion;
+        $gastos->id_anio = $request->id_anio;
+        $gastos->dia = $request->dia;
+        $gastos->id_user = $id;
+        $gastos->save();
+
+        return back();
+
     }
 
     /**
@@ -57,9 +70,12 @@ class GastosController extends Controller
      * @param  \App\Gastos  $gastos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gastos $gastos)
+    public function edit($id)
     {
-        //
+        $mes = Mes::all();
+        $anios = Anio::all();
+    	$gastos = Gastos::find($id);
+        return back()->with('edit', compact('mes', 'anios', 'gastos'));
     }
 
     /**
@@ -71,7 +87,17 @@ class GastosController extends Controller
      */
     public function update(Request $request, Gastos $gastos)
     {
-        //
+        $id = Auth::id();
+        $gastos = new Gastos();
+        $gastos->precio = $request->precio;
+        $gastos->id_mes = $request->id_mes;
+        $gastos->descripcion = $request->descripcion;
+        $gastos->id_anio = $request->id_anio;
+        $gastos->dia = $request->dia;
+        $gastos->id_user = $id;
+        $gastos->save();
+
+        return back();
     }
 
     /**
@@ -80,8 +106,10 @@ class GastosController extends Controller
      * @param  \App\Gastos  $gastos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gastos $gastos)
+    public function destroy($id)
     {
-        //
+        $delete=Gastos::find($id);
+        $delete->delete();
+        return back();
     }
 }
