@@ -8,7 +8,7 @@ use App\User;
 use App\Mes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\GastosController;
 
 
 class HomeController extends Controller
@@ -28,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(request $request, $idmes=0, $ani=null){
+    public function index(request $request, $idmes=0, $ani=null, $idedit=null){
 
         $id = Auth::id();
         $anios=Anio::all();
@@ -38,7 +38,9 @@ class HomeController extends Controller
         $gastos=$this->mostrarAgenda($idmes, $idanio, $id);
         $mesnombre=$this->mesNombre($idmes);
         $preciototal=0;
-        $idgastos=$request->idgastos;
+        $meses=Mes::orderBy('id','asc')
+        ->get();
+        $gast = Gastos::find($idedit);
         if($gastos!=null){
 
             foreach($gastos as $gas){
@@ -48,7 +50,7 @@ class HomeController extends Controller
         }
         
 
-        return view('home', compact('mes', 'anios', 'gastos','mesnombre', 'idmes', 'ani','preciototal', 'idanio', 'idgastos'));
+        return view('home', compact('mes', 'anios', 'gastos','mesnombre', 'idmes', 'ani','preciototal', 'idanio', 'idedit', 'meses', 'gast'));
 
     }
     public function mostrarAgenda($idmes=0, $idanio=null, $idusuario){

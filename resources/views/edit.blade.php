@@ -1,13 +1,12 @@
-@if(Session::has('edit'))
+
+@if($idedit!=null)
 
 <div class="panel panel-default">
-    <p>{{ Session::get('edit') }}</p>
-    <form method="POST" action="" enctype="multipart/form-data"> 
+    <form method="POST" action="{{ route('gastos.update', $idedit)}}" enctype="multipart/form-data"> 
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     {{method_field("PUT")}}
     {{ csrf_field() }} 
     <div class="panel-body">
-    <button type="button" class="close" data-dimiss="alert">x</button>
         <div class="row">
             <div class="col-md-2"><input type="text" class="form-control" name="precio" placeholder="Precio"></div>
             <div class="col-md-3"><input type="text" class="form-control" name="descripcion" placeholder="Descripcion"></div>
@@ -22,8 +21,8 @@
             <div class="col-md-2">
                 <select name="id_mes" id="id_mes" class="form-control">
                     <option hidden>Mes</option>
-                    @foreach($mes as $mes)
-                    <option value="{{$mes->id}}">{{$mes->mes}}</option>
+                    @foreach($mes as $me)
+                    <option value="{{$me->id}}">{{$me->mes}}</option>
                     @endforeach
                 </select>
             </div>
@@ -66,6 +65,6 @@
             <div class="col-md-1"><button type="submit" class="btn btn-primary"><i class="bi bi-send-plus-fill"></i></a></div>
         </div>
     </div>
-    <!--</form>-->
+    </form>
 </div>
 @endif

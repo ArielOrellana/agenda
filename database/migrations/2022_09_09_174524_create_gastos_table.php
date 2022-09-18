@@ -20,6 +20,7 @@ class CreateGastosTable extends Migration
             $table->integer('id_mes');
             $table->string('descripcion');
             $table->string('precio');
+            $table->string('dia');
             $table->timestamps();
         });
     }

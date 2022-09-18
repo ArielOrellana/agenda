@@ -7,6 +7,8 @@ use App\Anio;
 use App\Mes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+
 
 class GastosController extends Controller
 {
@@ -70,12 +72,10 @@ class GastosController extends Controller
      * @param  \App\Gastos  $gastos
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $ani, $idmes)
     {
-        $mes = Mes::all();
-        $anios = Anio::all();
-    	$gastos = Gastos::find($id);
-        return back()->with('edit', compact('mes', 'anios', 'gastos'));
+        $idedit=$id;
+        return redirect(URL::to('./' . $idmes . '/' . $ani . '/' . $idedit));
     }
 
     /**
@@ -85,17 +85,17 @@ class GastosController extends Controller
      * @param  \App\Gastos  $gastos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gastos $gastos)
+    public function update(Request $request, $idedit)
     {
         $id = Auth::id();
-        $gastos = new Gastos();
-        $gastos->precio = $request->precio;
-        $gastos->id_mes = $request->id_mes;
-        $gastos->descripcion = $request->descripcion;
-        $gastos->id_anio = $request->id_anio;
-        $gastos->dia = $request->dia;
-        $gastos->id_user = $id;
-        $gastos->save();
+        $gast = Gastos::find($idedit);
+        $gast->precio = $request->precio;
+        $gast->id_mes = $request->id_mes;
+        $gast->descripcion = $request->descripcion;
+        $gast->id_anio = $request->id_anio;
+        $gast->dia = $request->dia;
+        $gast->id_user = $id;
+        $gast->save();
 
         return back();
     }

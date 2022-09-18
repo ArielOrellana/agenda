@@ -18,5 +18,6 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/{idmes?}/{ani?}', 'HomeController@index')->name('home');
+Route::get('/{idmes?}/{ani?}/{idedit?}', 'HomeController@index')->name('home');
 Route::resource('gastos','GastosController');
+Route::get('gastos/{idedit}/{anio}/{idmes}/edit', 'GastosController@edit');
