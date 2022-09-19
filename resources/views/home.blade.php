@@ -9,9 +9,9 @@
                 @foreach($mes as $me)
                     <div class="btn-group " role="group" aria-label="...">
                     @if($ani!=0)
-                        <a href="{{URL::to('./'. $me->id . '/'. $ani )}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
+                        <a href="{{url('./'. $me->id . '/'. $ani )}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
                     @else
-                        <a href="{{URL::to('./'. $me->id)}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
+                        <a href="{{url('./'. $me->id)}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
                     @endif
                     </div>
                 @endforeach
@@ -21,7 +21,7 @@
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 @foreach($anios as $anio)
                     <div class="btn-group " role="group" aria-label="...">
-                        <a href="{{URL::to('./'. $idmes . '/'. $anio->anios)}}" class="btn btn-default btn-lg">{{$anio->anios}}</a>
+                        <a href="{{url('./'. $idmes . '/'. $anio->anios)}}" class="btn btn-default btn-lg">{{$anio->anios}}</a>
                     </div>
                 @endforeach
             </div>

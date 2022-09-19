@@ -75,7 +75,7 @@ class GastosController extends Controller
     public function edit($id, $ani, $idmes)
     {
         $idedit=$id;
-        return redirect(URL::to('./' . $idmes . '/' . $ani . '/' . $idedit));
+        return redirect(url('./' . $idmes . '/' . $ani . '/' . $idedit));
     }
 
     /**
