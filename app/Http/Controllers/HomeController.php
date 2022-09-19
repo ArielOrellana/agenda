@@ -28,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(request $request, $idmes=0, $ani=null, $idedit=null){
+    public function index(request $request, $idmes=0, $ani=0, $idedit=null){
 
         $id = Auth::id();
         $anios=Anio::all();
@@ -53,24 +53,24 @@ class HomeController extends Controller
         return view('home', compact('mes', 'anios', 'gastos','mesnombre', 'idmes', 'ani','preciototal', 'idanio', 'idedit', 'meses', 'gast'));
 
     }
-    public function mostrarAgenda($idmes=0, $idanio=null, $idusuario){
+    public function mostrarAgenda($idmes=0, $idanio=0, $idusuario){
         
         $gastos=null;
-        if($idmes!=0 && $idanio==null){
+        if($idmes!=0 && $idanio==0){
 
             $gastos=Gastos::where('id_mes', $idmes)
             ->where('id_user', $idusuario)
             ->orderBy('id','desc')
             ->get();
 
-        } elseif($idmes==0 && $idanio!=null){
+        } elseif($idmes==0 && $idanio!=0){
 
             $gastos=Gastos::where('id_anio', $idanio)
             ->where('id_user', $idusuario)
             ->orderBy('id','desc')
             ->get();
 
-        } elseif($idmes!=0 && $idanio!=null){
+        } elseif($idmes!=0 && $idanio!=0){
 
             $gastos=Gastos::where('id_mes', $idmes)
             ->where('id_anio', $idanio)
@@ -98,7 +98,7 @@ class HomeController extends Controller
         return $mes;
 
     }
-    public function idAnio($anio=null){
+    public function idAnio($anio=0){
 
         $id=Anio::select('id')
         ->where('anios', $anio)->first();

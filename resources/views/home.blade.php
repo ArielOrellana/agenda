@@ -8,7 +8,11 @@
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 @foreach($mes as $me)
                     <div class="btn-group " role="group" aria-label="...">
-                        <a href="{{URL::to('./'. $me->id . '/'. $ani)}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
+                    @if($ani!=0)
+                        <a href="{{URL::to('./'. $me->id . '/'. $ani )}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
+                    @else
+                        <a href="{{URL::to('./'. $me->id)}}" class="btn btn-default btn-lg" style="font-size: 10px; text-align: center;">{{$me->mes}}</a>
+                    @endif
                     </div>
                 @endforeach
             </div>
@@ -135,8 +139,9 @@
         </div>   
 
         @if($idedit!=null)
-
-        <div class="panel panel-default">
+        
+        <div class=" alert panel panel-default">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="bi bi-x-lg"></i></span></button>
             <form method="POST" action="{{ route('gastos.update', $idedit)}}" enctype="multipart/form-data"> 
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             {{method_field("PUT")}}
@@ -197,15 +202,16 @@
                             <option value="31">31</option>
                         </select>
                     </div>
-                    <div class="col-md-1"><button type="submit" class="btn btn-primary"><i class="bi bi-send-plus-fill"></i></a></div>
+                    <div class="col-md-0"><button type="submit" class="btn btn-primary"><i class="bi bi-send-plus-fill"></i></a></div>
                 </div>
             </div>
             </form>
         </div>
+        
         @endif
         
         <div class="panel panel-primary">           
-            <div class="panel-heading">Agenda {{$mesnombre}} {{$ani}} </div>
+            <div class="panel-heading">Agenda {{$mesnombre}} @if($ani!=0){{$ani}} @endif</div>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
