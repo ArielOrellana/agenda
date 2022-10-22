@@ -60,14 +60,14 @@ class HomeController extends Controller
 
             $gastos=Gastos::where('id_mes', $idmes)
             ->where('id_user', $idusuario)
-            ->orderBy('id','desc')
+            ->orderBy('dia','desc')
             ->get();
 
         } elseif($idmes==0 && $idanio!=0){
 
             $gastos=Gastos::where('id_anio', $idanio)
             ->where('id_user', $idusuario)
-            ->orderBy('id','desc')
+            ->orderBy('dia','desc')
             ->get();
 
         } elseif($idmes!=0 && $idanio!=0){
@@ -75,7 +75,7 @@ class HomeController extends Controller
             $gastos=Gastos::where('id_mes', $idmes)
             ->where('id_anio', $idanio)
             ->where('id_user', $idusuario)
-            ->orderBy('id','desc')
+            ->orderBy('dia','desc')
             ->get();
 
         }
